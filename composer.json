@@ -3,13 +3,20 @@
     "description": "This message for output json or html",
     "type": "library",
     "license": "MIT",
+    "keywords": [
+        "API",
+        "Message",
+        "JSON",
+        "Laravel"
+    ],
+    "homepage": "https://github.com/akilsagitarius/message",
     "authors": [
         {
             "name": "Akil",
             "email": "hacker.akil17@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "require": {},
     "autoload": {
         "psr-4": {

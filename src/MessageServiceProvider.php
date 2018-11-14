@@ -9,7 +9,9 @@ class MessageServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->publishes([__DIR__.'/config/message.php' => config_path().'/message.php',]);
+        $this->publishes([
+            __DIR__.'/../config/message.php' => app()->basePath().'/config/message.php',
+        ], 'config');
     }
 
     public function register()
