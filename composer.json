@@ -1,0 +1,19 @@
+{
+    "name": "akill/message",
+    "description": "This message for output json or html",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Akil",
+            "email": "hacker.akil17@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Akill\\Message\\": "src/"            
+        }
+    }
+}
