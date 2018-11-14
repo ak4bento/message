@@ -22,10 +22,10 @@ abstract class ResultMessage {
     }
 
 
-    public function payload(){
+    public function payload($result){
         $this->message = response()->json([
             'code' => $this->code,
-            'result' => $this->getBool(),
+            'result' => $result,
             'message' => config('message.'.$this->code),
             'payload' => ''
         ], $this->code);
