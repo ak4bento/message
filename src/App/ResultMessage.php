@@ -21,14 +21,47 @@ abstract class ResultMessage {
         return $this;
     }
 
-
     public function payload($result){
         $this->message = response()->json([
             'code' => $this->code,
-            'result' => $result,
+            'result' => $this->getBool($this->code),
             'message' => config('message.'.$this->code),
-            'payload' => ''
+            'payload' => $result
         ], $this->code);
         return $this;
+    }
+
+    public function getResult($value){
+        $this->result = 100;
+        if ($value < 200) {
+            $this->result = 100;
+        }
+        if ($value < 300) {
+            $this->result = 200;
+        }
+        if ($value < 400) {
+            $this->result = 300;
+        }
+        if ($value < 500) {
+            $this->result = 400;
+        }
+        if ($value >= 500) {
+            $this->result = 500;
+        }
+    }
+
+    public function getBool($value){
+        switch($value){
+            case($this->getResult($value)):
+                return "Informational";
+            case($this->getResult($value)):
+                return "Success";
+            case($this->getResult($value)):
+                return "Redirection";
+            case($this->getResult($value)):
+                return "Client Error";
+            case($this->getResult($value)):
+                return "Server Error";
+        }
     }
 }
