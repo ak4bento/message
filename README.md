@@ -94,5 +94,16 @@ Will result in the following structured result:
     }
 }
 ```
+## Authors
 
-Profile [Akill](https://akilsagitarius.github.io/)
+***Muhammad Akil** - *Initial work* - [Akill](https://akilsagitarius.github.io/)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
