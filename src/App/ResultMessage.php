@@ -32,21 +32,20 @@ abstract class ResultMessage {
     }
 
     public function getResult($value){
-        $this->result = 100;
         if ($value < 200) {
-            $this->result = 100;
+            return 100;
         }
         if ($value < 300) {
-            $this->result = 200;
+            return 200;
         }
         if ($value < 400) {
-            $this->result = 300;
+            return 300;
         }
         if ($value < 500) {
-            $this->result = 400;
+            return 400;
         }
         if ($value >= 500) {
-            $this->result = 500;
+            return 500;
         }
     }
 

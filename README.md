@@ -1,87 +1,98 @@
-# Project Title
+# Message JSON Response And HTML Response (Commingsoon) Laravel 5
 
-One Paragraph of project description goes here
+A minimal package for JSON Response API and HTML Response (Commingsoon) to clients, Laravel.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Install the package via composer.
 
-### Prerequisites
-
-What things you need to install the software and how to install them
-
+Download package dengan composer
+```bash
+composer require akilsagitarius/message
 ```
-Give examples
+or
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+{
+	"require": {
+		"akilsagitarius/message" : "dev-master"
+	}
+}
 ```
-Give the example
+### Register the service provider.
+
+This package makes use of Laravel's auto-discovery of service providers. If you are an using earlier version of Laravel (&lt; 5.4) you will need to manually register the service provider.
+
+Add `akilsagitarius\message\MessageServiceProvider::class` to the `providers` array in `config/app.php`.
+
+example
+```php
+'providers' => [
+	....
+	
+	akilsagitarius\message\MessageServiceProvider::class,
+]
 ```
+### Register the service provider.
 
-And repeat
+Now, publish the configuration code response to your provider
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```php
+php artisan vendor:publish --tag=public --force
 ```
 
-### And coding style tests
+# Usage
 
-Explain what these tests test and why
+## Basic
+**NOTE:** The response code returned in the body payload will be set as the actual HTTP header response code as well.
 
+### Regular Responses
+
+This is simple response
+
+```php
+Route::get('/message', function () {
+    $reuslt = Message::success(200)->get();
+    return $reuslt;
+});
 ```
-Give an example
+
+Will result in the following structured result:
+
+```json
+{
+    code: 200,
+    result: "Success",
+    message: "OK"
+}
 ```
 
-## Deployment
+### Secondary Responses
 
-Add additional notes about how to deploy this on a live system
+This is response with result your send
 
-## Built With
+```php
+Route::get('/mess', function () {
+    $array = array(
+        'first' => 'This is first data',
+        'second' => 'This is second data',
+    );
+    $reuslt = Message::success(200)->payload($array)->get();
+    return $reuslt;
+});
+```
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Will result in the following structured result:
 
-## Contributing
+```json
+{
+    code: 200,
+    result: "Informational",
+    message: "OK",
+    payload: {
+        first: "This is first data",
+        second: "This is second data"
+    }
+}
+```
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Profile [Akill](https://akilsagitarius.github.io/)
